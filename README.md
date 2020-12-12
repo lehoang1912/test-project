@@ -6,7 +6,7 @@ Vue 2.6
 PHP 7.4
 Mysql 5.7
 
-Node version: v12.18.2
+Node version: v12.18
 
 ## Install
 
@@ -23,3 +23,7 @@ Node version: v12.18.2
 - Build: npm run dev Or npm run production
 
 ## Account to login
+
+Admin: admin@email.com
+Engineer: engineer@email.com
+Default user's password: password
