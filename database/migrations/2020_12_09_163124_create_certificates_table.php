@@ -15,7 +15,7 @@ class CreateCertificatesTable extends Migration
     {
         Schema::create('certificates', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('job_id')->index()->constrained('jobs');
+            $table->foreignId('job_id')->index()->constrained('jobs')->onDelete('cascade');
             $table->string('certificate_name');
             $table->timestamps();
         });

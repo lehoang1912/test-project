@@ -25,7 +25,7 @@ class UpdateJobRequest extends FormRequest
     {
         return [
             'job_name' => 'required|max:255',
-            'job_date' => 'required|date_format:Y-m-d|after:today',
+            'job_date' => 'required|date_format:Y-m-d',
         ];
     }
 }

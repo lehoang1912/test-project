@@ -15,7 +15,7 @@ class CreateJobsTable extends Migration
     {
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->index()->constrained('users');
+            $table->foreignId('user_id')->index()->constrained('users')->onDelete('cascade');
             $table->string('job_name');
             $table->date('job_date');
             $table->timestamps();
