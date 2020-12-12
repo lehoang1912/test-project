@@ -24,6 +24,8 @@ import LeftSidebar from './LeftSidebar'
 import Footer from './Footer'
 
 export default {
+    middleware: 'auth',
+
     components: {
         TopBar,
         LeftSidebar,

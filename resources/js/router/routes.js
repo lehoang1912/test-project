@@ -1,4 +1,5 @@
 import Login from '~/pages/auth/Login';
+import NotFound from '~/pages/errors/NotFound';
 import Main from '~/components/layout/Main';
 import JobList from '~/pages/job/JobList';
 import JobShow from '~/pages/job/JobShow';
@@ -14,7 +15,7 @@ export default [
         component: Login,
     },
     {
-        path: '/',
+        path: '/dashboard',
         component: Main,
         children: [
             {
@@ -48,5 +49,10 @@ export default [
                 component: JobEdit,
             },
         ],
+    },
+    {
+        path: '*',
+        name: 'notfound',
+        component: NotFound,
     },
 ];
