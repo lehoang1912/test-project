@@ -5,7 +5,7 @@
                 <ul class="metismenu" id="side-menu">
                     <li class="menu-title">Main</li>
                     
-                    <li>
+                    <li v-if="isAdmin">
                         <router-link :to="{ name: 'users.list' }" class="waves-effect">
                             <i class="mdi mdi-account-multiple"></i><span> Users </span>
                         </router-link>
@@ -25,7 +25,11 @@
 </template>
 
 <script>
+import RoleMixin from '~/mixins/RoleMixin';
+
 export default {
-    
+    mixins: [
+        RoleMixin,
+    ],
 }
 </script>

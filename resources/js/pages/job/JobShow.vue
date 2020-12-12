@@ -21,7 +21,7 @@
                             <div class="col-12 m-b-20 d-flex justify-content-between">
                                 <h4 class="header-title">{{ job.job_name }}</h4>
                                 
-                                <div>
+                                <div v-if="canEdit">
                                     <button type="button" class="btn btn-danger waves-effect waves-light" @click="confirmDeleteJob">Delete</button>
                                     <router-link :to="{ name: 'jobs.edit', params: { jobId: this.jobId } }">
                                         <button type="button" class="btn btn-primary waves-effect waves-light">Edit</button>
@@ -42,10 +42,10 @@
                             <div class="col-sm-9 show-certificates-list">
                                 <div v-for="(certificate, index) in job.certificates" :key="certificate.id" class="certificate-item">
                                     {{ certificate.certificate_name }}
-                                    <i class="ion-close" @click="removeCertificate(certificate, index)"></i>
+                                    <i v-if="canEdit" class="ion-close" @click="removeCertificate(certificate, index)"></i>
                                 </div>
 
-                                <div class="add-certificate-btn" @click="showCreationCertificateModal">+ Certificate</div>
+                                <div v-if="canEdit" class="add-certificate-btn" @click="showCreationCertificateModal">+ Certificate</div>
                             </div>
                         </div>
 
@@ -74,7 +74,8 @@
 
 <script>
 import CreateCertificateModal from '~/components/job/CreateCertificateModal';
-import DeleteConfirm from '~/components/common/DeleteConfirm'
+import DeleteConfirm from '~/components/common/DeleteConfirm';
+import RoleMixin from '~/mixins/RoleMixin';
 
 export default {
     middleware: 'auth',
@@ -84,11 +85,21 @@ export default {
         DeleteConfirm,
     },
 
+    mixins: [
+        RoleMixin,
+    ],
+
     data() {
         return {
             jobId: this.$route.params.jobId,
             job: {},
         };
+    },
+
+    computed: {
+        canEdit() {
+            return this.isAdmin || this.currentUser.id == this.job.user_id;
+        },
     },
 
     created() {

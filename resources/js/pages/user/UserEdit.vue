@@ -73,7 +73,7 @@
 import Form from 'vform';
 
 export default {
-    middleware: 'auth',
+    middleware: ['auth', 'admin'],
 
     data() {
         return {

@@ -42,7 +42,7 @@
                                             <td>{{ user.role | getRoleName }}</td>
                                             <td>{{ user.created_at | moment('YYYY-MM-DD HH:mm') }}</td>
                                             <td class="text-right">
-                                                <popper ref="popper-action" trigger="clickToToggle" :visible-arrow="false">
+                                                <popper v-if="currentUser.id != user.id" ref="popper-action" trigger="clickToToggle" :visible-arrow="false">
                                                     <div class="popper action-popper">
                                                         <ul class="action-popper-list">
                                                             <li class="action-popper-item" @click="showUser(user)">
@@ -101,15 +101,20 @@ import CreateUserModal from '~/components/user/CreateUserModal';
 import DeleteConfirm from '~/components/common/DeleteConfirm'
 import Popper from 'vue-popperjs';
 import { ROLE, ROLE_NAME } from '~/constant/user'
+import RoleMixin from '~/mixins/RoleMixin';
 
 export default {
-    middleware: 'auth',
+    middleware: ['auth', 'admin'],
     
     components: {
         CreateUserModal,
         DeleteConfirm,
         Popper,
     },
+
+    mixins: [
+        RoleMixin,
+    ],
 
     filters: {
         getRoleName(value) {

@@ -78,7 +78,7 @@ import DeleteConfirm from '~/components/common/DeleteConfirm'
 import { ROLE, ROLE_NAME } from '~/constant/user'
 
 export default {
-    middleware: 'auth',
+    middleware: ['auth', 'admin'],
     
     components: {
         DeleteConfirm,

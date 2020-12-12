@@ -47,7 +47,7 @@
                                                                 <i class="mdi mdi-open-in-app mr-2"></i>
                                                                 <span>View</span>
                                                             </li>
-                                                            <template>
+                                                            <template v-if="isAdmin || currentUser.id == job.user_id">
                                                                 <li class="action-popper-item" @click="editJob(job)">
                                                                     <i class="mdi mdi-pencil mr-2"></i>
                                                                     <span>Edit</span>
@@ -98,6 +98,7 @@
 import CreateJobModal from '~/components/job/CreateJobModal';
 import DeleteConfirm from '~/components/common/DeleteConfirm'
 import Popper from 'vue-popperjs';
+import RoleMixin from '~/mixins/RoleMixin';
 
 export default {
     middleware: 'auth',
@@ -107,6 +108,10 @@ export default {
         DeleteConfirm,
         Popper,
     },
+
+    mixins: [
+        RoleMixin,
+    ],
 
     data() {
         return {
