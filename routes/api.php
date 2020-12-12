@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/profile', 'ProfileController@show')->name('api.profile.get');
+
+    Route::get('/jobs', 'JobController@index')->name('api.jobs.list');
+    Route::get('/jobs/{job}', 'JobController@show')->name('api.jobs.show');
+    Route::post('/jobs', 'JobController@store')->name('api.jobs.store');
+    Route::put('/jobs/{job}', 'JobController@update')->name('api.jobs.update');
+    Route::delete('/jobs/{job}', 'JobController@destroy')->name('api.jobs.delete');
+
+    Route::post('/jobs/{job}/certificates', 'CertificateController@store')->name('api.certificates.store');
+    Route::delete('/jobs/{job}/certificates/{certificate}', 'CertificateController@destroy')->name('api.certificates.delete');
 });

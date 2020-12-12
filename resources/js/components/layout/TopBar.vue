@@ -5,11 +5,9 @@
             <a href="index.html" class="logo">
                 <span class="text-white">
                     TEST PROJECT
-                    <!-- <img src="assets/images/logo-light.png" alt="" height="18"> -->
                 </span>
                 <i style="color: white !important; font-style: normal;">
                     T
-                    <!-- <img src="assets/images/logo-sm.png" alt="" height="22"> -->
                 </i>
             </a>
         </div>
@@ -19,11 +17,11 @@
                 <li class="dropdown notification-list">
                     <div class="dropdown notification-list nav-pro-img">
                         <a class="dropdown-toggle nav-link arrow-none waves-effect nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                            <span>Hello Hoang!</span>
-                            <img src="assets/images/users/user-4.jpg" alt="user" class="rounded-circle">
+                            <span class="m-r-20">Hello {{ user.first_name }}!</span>
+                            <avatar :username="`${user.first_name} ${user.last_name}`" :size="36" :inline="true"></avatar>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
-                            <a class="dropdown-item text-danger" href="#"><i class="mdi mdi-power text-danger"></i> Logout</a>
+                            <button class="dropdown-item text-danger" @click="logout"><i class="mdi mdi-power text-danger"></i> Logout</button>
                         </div>                                                                    
                     </div>
                 </li>
@@ -41,7 +39,25 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+import Avatar from 'vue-avatar'
+
 export default {
-    
+    components: {
+        Avatar
+    },
+
+    computed: {
+        ...mapGetters({
+            user: 'auth/user',
+        }),
+    },
+
+    methods: {
+        async logout() {
+            await this.$store.dispatch('auth/logout');
+            this.$router.push({ name: 'login' });
+        }
+    }
 }
 </script>

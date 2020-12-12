@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Prettus\Repository\Contracts\Transformable;
+use Prettus\Repository\Traits\TransformableTrait;
 
-class Job extends Model
+class Job extends Model implements Transformable
 {
     use HasFactory;
+    use TransformableTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -19,4 +22,20 @@ class Job extends Model
         'job_name',
         'job_date',
     ];
+
+    /**
+     * Get the user that owns the comment.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the certificates for the job.
+     */
+    public function certificates()
+    {
+        return $this->hasMany(Certificate::class);
+    }
 }

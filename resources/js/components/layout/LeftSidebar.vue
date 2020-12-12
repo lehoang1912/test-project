@@ -6,11 +6,15 @@
                     <li class="menu-title">Main</li>
                     
                     <li>
-                        <a href="#" class="waves-effect"><i class="mdi mdi-account-multiple"></i><span> Users </span></a>
+                        <router-link :to="{ name: 'users.list' }" class="waves-effect">
+                            <i class="mdi mdi-account-multiple"></i><span> Users </span>
+                        </router-link>
                     </li>
 
                     <li>
-                        <a href="#" class="waves-effect"><i class="mdi mdi-calendar-multiple-check"></i><span> My jobs </span></a>
+                        <router-link :to="{ name: 'jobs.list' }" class="waves-effect">
+                            <i class="mdi mdi-calendar-multiple-check"></i><span> Jobs </span>
+                        </router-link>
                     </li>
                 </ul>
             </div>

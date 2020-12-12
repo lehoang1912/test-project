@@ -1,0 +1,23 @@
+.action-popper {
+    box-shadow: unset !important;
+    background-color: #fff !important;
+    
+    &-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        min-width: 160px;
+    }
+
+    &-item {
+        cursor: pointer;
+        padding: 6px 20px;
+        text-align: left;
+        color: #3c4858;
+        font-size: 13px;
+
+        &:hover {
+            background-color: rgb(235, 236, 240);
+        }
+    }
+}
