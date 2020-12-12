@@ -25,5 +25,7 @@ Node version: v12.18
 ## Account to login
 
 Admin: admin@email.com
+
 Engineer: engineer@email.com
+
 Default user's password: password
