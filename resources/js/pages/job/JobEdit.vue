@@ -87,15 +87,23 @@ export default {
         },
 
         updateJob() {
-            this.form.put(route('api.jobs.update', { job: this.jobId })).then((response) => {
-                this.$notify({
-                    group: 'common',
-                    type: 'success',
-                    text: 'Updated job',
-                });
+            this.form.put(route('api.jobs.update', { job: this.jobId }))
+                .then((response) => {
+                    this.$notify({
+                        group: 'common',
+                        type: 'success',
+                        text: 'Updated job',
+                    });
 
-                this.$router.push({ name: 'jobs.show', params: { jobId: this.jobId } });
-            })
+                    this.$router.push({ name: 'jobs.show', params: { jobId: this.jobId } });
+                })
+                .catch((e) => {
+                    this.$notify({
+                        group: 'common',
+                        type: 'error',
+                        text: 'Something went wrong. Please try again!',
+                    });
+                });
         },
 
         cancel() {

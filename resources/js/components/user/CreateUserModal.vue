@@ -100,6 +100,13 @@ export default {
                     this.resetForm();
 
                     this.$emit('created');
+                })
+                .catch((e) => {
+                    this.$notify({
+                        group: 'common',
+                        type: 'error',
+                        text: 'Something went wrong. Please try again!',
+                    });
                 });
         },
 
