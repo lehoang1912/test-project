@@ -15,7 +15,7 @@ export default [
         component: Login,
     },
     {
-        path: '/dashboard',
+        path: '/',
         component: Main,
         children: [
             {
